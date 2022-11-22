@@ -1,0 +1,68 @@
+@import-normalize;
+
+
+:root {
+  --brand: #3AB6EC;
+  --morning: #F0F4F7;
+  --day: #818990;
+  --primary: #271f47;
+
+}
+
+body {
+  margin: 0;
+  color: var(--day);
+  background-color: var(--morning);
+  font-family: 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+h1, h2, h3, h4, h5, h6, ul, li, p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+html, body {
+  height: 100%;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 60px;
+  overflow: hidden;
+}

@@ -1,0 +1,35 @@
+.usersPage {
+  display: flex;
+  padding: 20px 0;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.userList {
+  flex: 1 1 auto;
+}
+
+.paginationUser {
+  align-self: center;
+}
+
+.filterButton {
+  padding: 5px 15px;
+  align-self: flex-start;
+  font-size: 20px;
+  border: 1px solid var(--brand);
+  border-radius: 10px;
+  transition: border-color .2s ease-in-out;
+}
+
+.filterButton:hover {
+  box-shadow: 0 0 10px var(--brand);
+}
+
+.filterButtonActive {
+  border-color: var(--red);
+}
+
+.filterButtonActive:hover {
+  box-shadow: 0 0 10px var(--red);
+}
