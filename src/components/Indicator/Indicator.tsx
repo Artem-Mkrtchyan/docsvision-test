@@ -1,8 +1,8 @@
 import React, { memo } from "react"
-import { TInvectory } from "../../types/databaseType"
+import { TInventory } from "../../types/databaseType"
 
 interface IProps {
-  indicator: Array<TInvectory>
+  indicator: Array<TInventory>
 }
 
 export const Indicator = memo<IProps>(({ indicator }) => {

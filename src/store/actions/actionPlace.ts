@@ -1,6 +1,6 @@
 import { createHierarchyTree } from './../../utils/helperFunc';
 import { firebaseAPI } from '../../firebase/API'
-import { THierarchy, TInvectoryResp, TPlace } from '../../types/databaseType'
+import { THierarchy, TInventory, TPlace } from '../../types/databaseType'
 import { placesSlice } from '../slices/placesSlice'
 import { AppDispatch } from '../store'
 
@@ -50,4 +50,8 @@ export const fetchInvectory = () => async (dispatch: AppDispatch) => {
     dispatch(placesSlice.actions.setError('Fetch invectory error'))
   }
 
+}
+
+export const setCurrentInventory = (arr: Array<TInventory>) => (dispatch: AppDispatch) => {
+  dispatch(placesSlice.actions.setCurrentInventory(arr))
 }

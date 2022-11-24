@@ -1,6 +1,6 @@
 import { app } from './firebase';
 import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
-import { TInvectoryResp, TPlace } from '../types/databaseType';
+import { TInventoryResp, TPlace } from '../types/databaseType';
 
 export const firebaseAPI = {
   _db: getFirestore(app),

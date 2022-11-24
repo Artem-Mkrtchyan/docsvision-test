@@ -2,7 +2,8 @@ export type TInitialState = {
   loading: boolean
   error: string
   hierarchy: Array<THierarchy>
-  invectory: Array<TInvectory>
+  invectory: Array<TInventory>,
+  currentInventory: Array<TInventory>,
 }
 
 export type TPlace = {
@@ -11,14 +12,14 @@ export type TPlace = {
   parts: Array<string>
 }
 
-export type TInvectory = {
+export type TInventory = {
   name: string
   count: number
   id: string
   placeId: string
 }
 
-export type TInvectoryResp = {
+export type TInventoryResp = {
   id: string
   placeId: string
   data: {

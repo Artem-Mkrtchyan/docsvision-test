@@ -1,4 +1,4 @@
-import { THierarchy, TInvectory, TPlace } from "../types/databaseType"
+import { THierarchy, TInventory, TPlace } from "../types/databaseType"
 
 export const randomIndex = (): string => Math.random().toString(36).substring(2, 15)
 
@@ -31,9 +31,9 @@ export type TDependency = {
   level: NestingLevel
 }
 
-export const putAllSetsOfKeysWithData = (dependency: TDependency, inventory: Array<TInvectory>) => {
-  let currentInventory: Array<TInvectory> = []
-  inventory.forEach((inventory: TInvectory) => {
+export const putAllSetsOfKeysWithData = (dependency: TDependency, inventory: Array<TInventory>) => {
+  let currentInventory: Array<TInventory> = []
+  inventory.forEach((inventory: TInventory) => {
     dependency.keys[0].forEach((key: string) => {
       if (key === inventory.placeId) {
         currentInventory.push(inventory)
