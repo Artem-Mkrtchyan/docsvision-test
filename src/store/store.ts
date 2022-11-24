@@ -2,7 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit"
 import placesReduser from './slices/placesSlice'
 
 const rootReducer = combineReducers({
-  users: placesReduser
+  main: placesReduser
 })
 
 export const store = configureStore({

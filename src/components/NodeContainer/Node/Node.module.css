@@ -1,0 +1,17 @@
+.node {
+  padding-left: 20px;
+  position: relative;
+  overflow: hidden;
+  height: auto;
+}
+
+.node::before {
+  position: absolute;
+  content: "";
+  background-color: #4A4A4A;
+  z-index: -1;
+  width: 1px;
+  height: calc(100% - 44px);
+  top: 25px;
+  left: 35px;
+}

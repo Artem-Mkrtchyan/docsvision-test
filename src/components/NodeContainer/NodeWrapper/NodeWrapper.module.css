@@ -1,0 +1,19 @@
+.wrapper {
+  position: relative;
+  padding-top: 15px;
+  height: calc(100% - 15px);
+}
+
+.inner {
+  position: relative;
+  overflow: hidden;
+}
+
+.treeWrap {
+  position: relative;
+  left: -17px;
+}
+
+.treeWrap>*>*:before {
+  display: none;
+}

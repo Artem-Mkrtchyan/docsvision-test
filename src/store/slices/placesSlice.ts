@@ -1,4 +1,4 @@
-import { THierarchy, TInitialState } from '../../types/databaseType';
+import { THierarchy, TInitialState, TInvectory } from '../../types/databaseType';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 
@@ -20,8 +20,13 @@ export const placesSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
-    setPlaces(state, action: PayloadAction<Array<THierarchy>>){
+    setPlaces(state, action: PayloadAction<Array<THierarchy>>) {
+      state.error = ''
       state.hierarchy = action.payload
+    },
+    setInvectory(state, action: PayloadAction<Array<TInvectory>>) {
+      state.error = ''
+      state.invectory = action.payload
     }
   }
 })

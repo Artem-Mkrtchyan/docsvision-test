@@ -1,6 +1,6 @@
 import { createHierarchyTree } from './../../utils/helperFunc';
 import { firebaseAPI } from '../../firebase/API'
-import { THierarchy, TPlace } from '../../types/databaseType'
+import { THierarchy, TInvectoryResp, TPlace } from '../../types/databaseType'
 import { placesSlice } from '../slices/placesSlice'
 import { AppDispatch } from '../store'
 
@@ -8,9 +8,9 @@ export const fetchPlaces = () => async (dispatch: AppDispatch) => {
   try {
     dispatch(placesSlice.actions.fetching())
 
-    const response = await firebaseAPI.getPlaces()
+    const response: Array<TPlace> = await firebaseAPI.getPlaces()
 
-    const places: Array<TPlace> = response.map((place: TPlace) => ({
+    const places: Array<TPlace> = response.map((place) => ({
       name: place.name,
       id: place.id,
       parts: place.parts === undefined ? [] : place.parts,
@@ -27,8 +27,27 @@ export const fetchPlaces = () => async (dispatch: AppDispatch) => {
     const hierarchyWithNodes: Array<THierarchy> = createHierarchyTree(hierarchy, places)
 
     dispatch(placesSlice.actions.setPlaces(hierarchyWithNodes))
-    dispatch(placesSlice.actions.setError(''))
   } catch (error) {
-    dispatch(placesSlice.actions.setError('Fetch error'))
+    dispatch(placesSlice.actions.setError('Fetch places error'))
   }
+}
+
+export const fetchInvectory = () => async (dispatch: AppDispatch) => {
+  try {
+    dispatch(placesSlice.actions.fetching())
+
+    const response = await firebaseAPI.getInventory();
+
+    const inventory = response.map((inventory) => ({
+      name: inventory.data.name,
+      count: +inventory.data.count,
+      id: inventory.id,
+      placeId: inventory.placeId,
+    }))
+
+    dispatch(placesSlice.actions.setInvectory(inventory))
+  } catch (error) {
+    dispatch(placesSlice.actions.setError('Fetch invectory error'))
+  }
+
 }

@@ -1,0 +1,22 @@
+.nodeRow {
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  height: 30px;
+  cursor: pointer;
+  position: relative;
+  background-color: transparent;
+}
+
+.nodeRow::before {
+  position: absolute;
+  content: '';
+  height: 1px;
+  width: 26px;
+  background-color: #4A4A4A;
+  top: 15px;
+  left: -5px;
+  z-index: -1;
+}

@@ -12,14 +12,23 @@ export type TPlace = {
 }
 
 export type TInvectory = {
-  name:string
+  name: string
   count: number
   id: string
   placeId: string
 }
 
+export type TInvectoryResp = {
+  id: string
+  placeId: string
+  data: {
+    name: string
+    count: number
+  }
+}
+
 export type THierarchy = {
   id: string
   name: string
-  parts: Array<THierarchy> | undefined
+  parts: Array<THierarchy>
 }

@@ -1,4 +1,4 @@
-import { THierarchy, TPlace } from "../types/databaseType"
+import { THierarchy, TInvectory, TPlace } from "../types/databaseType"
 
 export const randomIndex = (): string => Math.random().toString(36).substring(2, 15)
 
@@ -20,5 +20,59 @@ const extractParts = (node: TPlace, places: Array<TPlace>): THierarchy => {
 
 export const parseNodes = (places: Array<TPlace>, part: string): TPlace | undefined => {
   return places.find((place: TPlace) => place.id === part)
+}
+
+export enum NestingLevel {
+  above = "above",
+}
+
+export type TDependency = {
+  keys: Array<Array<string>>
+  level: NestingLevel
+}
+
+export const putAllSetsOfKeysWithData = (dependency: TDependency, inventory: Array<TInvectory>) => {
+  let currentInventory: Array<TInvectory> = []
+  inventory.forEach((inventory: TInvectory) => {
+    dependency.keys[0].forEach((key: string) => {
+      if (key === inventory.placeId) {
+        currentInventory.push(inventory)
+      }
+    })
+  })
+  return { currentInventory, level: dependency.level }
+}
+
+export const extractKeysFromDependencies = (id: string, hierarchy: Array<THierarchy>) => {
+  let nestingLevel = NestingLevel.above
+  let keysForInventory: Array<Array<string>> = []
+
+  hierarchy.forEach((node: THierarchy) => {
+    extractKeysFromDependenciesRecursion(id, node, keysForInventory)
+  })
+
+  return { keys: keysForInventory, level: nestingLevel }
+}
+
+export const extractKeysFromDependenciesRecursion = (id: string, node: THierarchy, keysForInventory: Array<Array<string>>) => {
+
+  if (node.id === id) {
+    const parts = node.parts.map((node: THierarchy) => {
+      const nodes = node.parts.map((room: THierarchy) => room.id)
+      return nodes
+    })
+
+    keysForInventory.push(
+      [
+        parts.flat(),
+        ...(node.parts.map((item: THierarchy) => item.id)),
+        node.id,
+      ].flat()
+    )
+  } else {
+    node.parts.forEach((node: THierarchy) => {
+      extractKeysFromDependenciesRecursion(id, node, keysForInventory)
+    })
+  }
 }
 
