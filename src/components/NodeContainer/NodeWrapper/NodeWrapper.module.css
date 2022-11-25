@@ -12,6 +12,9 @@
 .treeWrap {
   position: relative;
   left: -17px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
 }
 
 .treeWrap>*>*:before {

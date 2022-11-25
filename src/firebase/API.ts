@@ -1,34 +1,45 @@
-import { app } from './firebase';
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
-import { TInventoryResp, TPlace } from '../types/databaseType';
+import { fetch, TAddInventory } from "../types/databaseType"
+import firebase from "./firebaseInit"
 
 export const firebaseAPI = {
-  _db: getFirestore(app),
-  _snapshot(bdName: string) {
-    const placesCol = collection(this._db, bdName);
-    return getDocs(placesCol);
+  _db: firebase.firestore(),
+  getPlaces() {
+    return this._db.collection("places").get().then(response => {
+      let docs = response.docs.map(place => ({
+        id: place.id,
+        name: place.data().name,
+        parts: place.data().parts?.map(({ id }: { id: any }) => id),
+      }))
+      return docs
+    })
   },
 
-  async getPlaces() {
-
-    const placesSnapshot = await this._snapshot("places");
-    const placesList: Array<TPlace> = placesSnapshot.docs.map(place => ({
-      id: place.id,
-      name: place.data().name,
-      parts: place.data().parts?.map(({ id }: { id: any }) => id),
-    }));
-
-    return placesList;
+  getInventory() {
+    return this._db.collection("inventory").get().then(response => {
+      let docs = response.docs.map(inventory => ({
+        id: inventory.id,
+        data: inventory.data(),
+        placeId: inventory.data().place ? inventory.data().place.id : 'Not found'
+      }))
+      return docs
+    })
   },
 
-  async getInventory() {
-    const inventorySnapshot = await this._snapshot("inventory");
-    const inventoryList = inventorySnapshot.docs.map(inventory => {
-      return({
-      id: inventory.id,
-      data: inventory.data(),
-      placeId: inventory.data().place ? inventory.data().place.id : 'Not found'
-    })});
-    return inventoryList;
+  addInventory(data: TAddInventory) {
+    let filestore = this._db
+    return filestore.collection("inventory").doc().set({
+      name: data.name,
+      count: data.count,
+      place: filestore.collection("places").doc(data.id)
+    })
+      .then(() => ({ status: fetch.success }))
+      .catch(() => ({ status: fetch.error }))
+  },
+
+  deleteInventory(id: string) {
+    return this._db.collection("inventory").doc(id).delete()
+      .then(() => ({ status: fetch.success }))
+      .catch(() => ({ status: fetch.error }))
   },
 }
+

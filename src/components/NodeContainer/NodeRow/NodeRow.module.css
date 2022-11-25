@@ -1,5 +1,6 @@
 .nodeRow {
   display: flex;
+  padding-left: 25px;
   column-gap: 10px;
   align-items: center;
   margin-top: 5px;

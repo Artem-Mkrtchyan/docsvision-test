@@ -1,0 +1,17 @@
+.inventorySection {
+  display: flex;
+  column-gap: 15px;
+}
+.sectionList {
+  flex-wrap: 1 0 40%;
+}
+.wrapperTable {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+  flex: 0 1 60%;
+}
+.inventoryTitle {
+  font-size: 18px;
+  color: var(--primary);
+}

@@ -2,11 +2,12 @@
 
 
 :root {
-  --brand: #3AB6EC;
   --morning: #F0F4F7;
   --day: #818990;
   --primary: #271f47;
-
+  --green: #bbd02d;
+  --white: #ffffff;
+  --red: #ef3124
 }
 
 body {

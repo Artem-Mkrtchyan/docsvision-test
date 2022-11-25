@@ -22,36 +22,26 @@ export const parseNodes = (places: Array<TPlace>, part: string): TPlace | undefi
   return places.find((place: TPlace) => place.id === part)
 }
 
-export enum NestingLevel {
-  above = "above",
-}
-
-export type TDependency = {
-  keys: Array<Array<string>>
-  level: NestingLevel
-}
-
-export const putAllSetsOfKeysWithData = (dependency: TDependency, inventory: Array<TInventory>) => {
+export const putAllSetsOfKeysWithData = (keys: Array<Array<string>>, inventory: Array<TInventory>) => {
   let currentInventory: Array<TInventory> = []
   inventory.forEach((inventory: TInventory) => {
-    dependency.keys[0].forEach((key: string) => {
+    keys[0].forEach((key: string) => {
       if (key === inventory.placeId) {
         currentInventory.push(inventory)
       }
     })
   })
-  return { currentInventory, level: dependency.level }
+  return currentInventory
 }
 
 export const extractKeysFromDependencies = (id: string, hierarchy: Array<THierarchy>) => {
-  let nestingLevel = NestingLevel.above
   let keysForInventory: Array<Array<string>> = []
 
   hierarchy.forEach((node: THierarchy) => {
     extractKeysFromDependenciesRecursion(id, node, keysForInventory)
   })
 
-  return { keys: keysForInventory, level: nestingLevel }
+  return  keysForInventory
 }
 
 export const extractKeysFromDependenciesRecursion = (id: string, node: THierarchy, keysForInventory: Array<Array<string>>) => {

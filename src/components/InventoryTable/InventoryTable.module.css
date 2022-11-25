@@ -1,0 +1,37 @@
+.table {
+  display: grid;
+  border-collapse: collapse;
+  min-width: 100%;
+  grid-template-columns:
+    minmax(150px, 2fr)
+    minmax(150px, 6fr)
+    minmax(150px, 1fr)
+}
+
+.header,
+.bodyTable,
+.row {
+  display: contents;
+}
+
+.cell {
+  padding: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cell {
+  position: sticky;
+  top: 0;
+  background-color: var(--primary);
+  text-align: left;
+  font-weight: normal;
+  font-size: 1.1rem;
+  color: white;
+}
+
+.cell:last-child {
+  border: 0;
+}
+

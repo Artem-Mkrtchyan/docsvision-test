@@ -1,12 +1,11 @@
-import React from 'react';
-import { useAppDispatch } from '../../hooks/redux';
-import { setCurrentInventory } from '../../store/actions/actionPlace';
-import { THierarchy, TInventory } from '../../types/databaseType';
-import { extractKeysFromDependencies, putAllSetsOfKeysWithData } from '../../utils/helperFunc';
-import { Indicator } from '../Indicator/Indicator';
-import { Node } from './Node/Node';
-import { NodeRow } from './NodeRow/NodeRow';
-import { NodeWrapper } from './NodeWrapper/NodeWrapper';
+import React from 'react'
+import { useAppDispatch } from '../../hooks/redux'
+import { setCurrentInventory, setCurrentName, setRoom } from '../../store/actions/actionPlace'
+import { THierarchy, TInventory } from '../../types/databaseType'
+import { extractKeysFromDependencies, putAllSetsOfKeysWithData } from '../../utils/helperFunc'
+import { Node } from './Node/Node'
+import { NodeRow } from './NodeRow/NodeRow'
+import { NodeWrapper } from './NodeWrapper/NodeWrapper'
 
 type TProps = {
   arr: Array<THierarchy>,
@@ -15,34 +14,26 @@ type TProps = {
 
 export const NodeContainer: React.FC<TProps> = ({ arr, inventory }) => {
 
-  const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch()
 
   const buildTree = (arr: Array<THierarchy>, inventory: Array<TInventory>) => {
     const mappedNode = arr.map((node) => {
 
-      const currInv = putAllSetsOfKeysWithData(
+      const currInvectory = putAllSetsOfKeysWithData(
         extractKeysFromDependencies(node.id, arr),
         inventory
       )
 
       const showCurrentInventory = (arr: Array<TInventory>) => {
         dispatch(setCurrentInventory(arr))
+        dispatch(setCurrentName(node.name))
+        !!node.parts.length ? dispatch(setRoom('')) : dispatch(setRoom(node.id))
       }
 
       return (
         <Node key={node.id}>
           <>
-            <NodeRow currentInventory={currInv.currentInventory} onClick={showCurrentInventory} >
-              <span>
-                arrow
-              </span>
-              <span>
-                {node.name}
-              </span>
-              <span>
-                <Indicator indicator={currInv.currentInventory} />
-              </span>
-            </NodeRow>
+            <NodeRow currentInventory={currInvectory} onClick={showCurrentInventory} nodeName={node.name} />
 
             {node.parts ? buildTree(node.parts, inventory) : null}
           </>

@@ -11,5 +11,5 @@
 }
 
 .trill {
-  fill: #bbd02d;
+  fill:  var(--green);
 }

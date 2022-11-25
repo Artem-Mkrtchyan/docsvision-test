@@ -1,5 +1,6 @@
 import React, { memo } from "react"
 import { TInventory } from "../../types/databaseType"
+import styles from './Indicator.module.css'
 
 interface IProps {
   indicator: Array<TInventory>
@@ -8,5 +9,5 @@ interface IProps {
 export const Indicator = memo<IProps>(({ indicator }) => {
   if (indicator.length === 0) return null
 
-  return <span>{indicator.length}</span>
+  return <span className={styles.count}>{indicator.length}</span>
 })

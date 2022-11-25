@@ -1,0 +1,59 @@
+.row {
+  display: contents;
+}
+
+.cell {
+  padding: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.row:nth-child(even) .cell {
+  background: #f8f6ff;
+}
+
+.input {
+  display: block;
+  color: inherit;
+  width: 100%;
+  padding: 5px 10px;
+  max-width: 100%;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: transparent;
+  outline: none;
+  transition-property: border-color, color;
+  transition-duration: .2s;
+  transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.inputEdit {
+  border-color: var(--green);
+  color: var(--primary);
+}
+
+.buttonWrap {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.btn {
+  font-weight: 700;
+}
+
+.btnSubmit {
+  color: var(--green);
+}
+
+.btnEdit {
+  color: var(--primary);
+}
+
+.btnDelete {
+  color: var(--red);
+}
