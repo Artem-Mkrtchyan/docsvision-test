@@ -1,6 +1,3 @@
-This application implements the display of user cards, the ability to like and filter by likes.
-For information use REST API https://reqres.in/
-
 # Getting Started with Create React App
 
 ## Available Scripts
