@@ -1,8 +1,13 @@
 {
-  "name": "social-test",
+  "name": "docsvision-test",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://artem-mkrtchyan.github.io",
+  "homepage": "https://artem-mkrtchyan.github.io/docsvision-test/",
+  "keywords": [
+    "typescript",
+    "react"
+  ],
+  "author": "Mkrtchyan Artem <mkr2263@yandex.ru>",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.0",
     "@types/node": "^16.18.3",
@@ -42,5 +47,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^4.0.0"
   }
 }
